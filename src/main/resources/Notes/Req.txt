@@ -1,0 +1,75 @@
+
+- Create Oracle DataBase, tables, use actual db for rest apis
+
+- Configure Swagger
+
+-add validations
+
+- add exception handling
+
+- Learn about microservices and implement here
+
+- Create a spring batch process which can handle sending reminders
+
+-add junits
+
+- integrate with whatsapp/sms/mail
+
+- Setup login mechanism
+
+
+Reminder:
+id (auto generate)
+name
+description
+date time,
+user id
+
+
+RemindersController:
+GET:
+
+/reminders/{userId}
+/reminder/{reminderId}
+
+
+POST:
+/reminder
+
+PUT:
+/reminder/{reminderId}
+
+DELETE
+/reminder/{reminderId}
+/reminders/{userId}
+
+
+
+
+
+User:
+Name
+DOB
+mail id
+mobile number
+
+User Controller:
+GET:
+
+/users
+/user/{id}
+
+
+POST:
+/user
+
+PUT:
+/user/{id}
+
+DELETE
+/user/{id}
+/users
+
+
+
+
