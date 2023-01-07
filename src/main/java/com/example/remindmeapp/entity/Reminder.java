@@ -1,46 +1,57 @@
 package com.example.remindmeapp.entity;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity
+@Table(name="reminder")
 public class Reminder {
+    @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    private Integer Id;
-    private String Name;
-    private String Description;
+
+    private String name;
+    private String description;
     private Integer userId;
-    private Date date;
+    private Date scheduledDate;
 
 
-    public Reminder(Integer id, String name, String description, Integer userId, Date date) {
-        Id = id;
-        Name = name;
-        Description = description;
-        this.date = date;
+    public Reminder(Integer id, String name, String description, Integer userId, Date scheduledDate) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.scheduledDate = scheduledDate;
         this.userId=userId;
     }
 
+    public Reminder() {
+
+    }
+
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public Integer getUserId() {
@@ -51,11 +62,23 @@ public class Reminder {
         this.userId = userId;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getScheduledDate() {
+        return scheduledDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setScheduledDate(Date date) {
+        this.scheduledDate = date;
     }
+
+    @Override
+    public String toString() {
+        return "Reminder{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", userId=" + userId +
+                ", scheduledDate=" + scheduledDate +
+                '}';
+    }
+
 }

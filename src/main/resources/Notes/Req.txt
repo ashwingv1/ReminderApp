@@ -1,5 +1,5 @@
 
-- Create Oracle DataBase, tables, use actual db for rest apis
+@- Create mysql DataBase, tables, use actual db for rest apis
 
 - Configure Swagger
 
@@ -7,15 +7,18 @@
 
 - add exception handling
 
+-add junits
+
+- Setup login mechanism
+
 - Learn about microservices and implement here
 
 - Create a spring batch process which can handle sending reminders
 
--add junits
 
 - integrate with whatsapp/sms/mail
 
-- Setup login mechanism
+
 
 
 Reminder:

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController()
 public class RemindersController {
@@ -19,7 +20,7 @@ public class RemindersController {
 
     @GetMapping(path="/reminder/{reminderId}")
     public Reminder getReminder(@PathVariable int reminderId){
-        return reminderDaoService.getReminder(reminderId);
+        return reminderDaoService.getReminder(reminderId).get();
     }
 
     @GetMapping(path="/reminders/{userId}")

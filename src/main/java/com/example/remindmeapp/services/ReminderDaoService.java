@@ -1,12 +1,11 @@
 package com.example.remindmeapp.services;
 
 import com.example.remindmeapp.entity.Reminder;
+import com.example.remindmeapp.repository.ReminderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class ReminderDaoService {
@@ -27,53 +26,33 @@ public class ReminderDaoService {
 
     }
 
+@Autowired
+    public ReminderRepository reminderRepository;
     public void createReminder(Reminder reminder){
-        HashMap<Integer,Reminder> hm;
-        if(remindersMap.containsKey(reminder.getUserId()))
-            hm=remindersMap.get(reminder.getUserId());
-        else
-            hm = new HashMap<>();
-        hm.put(reminder.getId(), reminder);
-        remindersMap.put(reminder.getUserId(),hm);
-        System.out.println("Reminder " + reminder.getName() + "created for the user id:"+reminder.getUserId());
+        reminderRepository.save(reminder);
     }
 
 
-    public Reminder getReminder(Integer reminderId){
-        Reminder reminder=null;
-        for(HashMap<Integer,Reminder> hm : remindersMap.values()){
-            if(hm.containsKey(reminderId)){
-                reminder=hm.get(reminderId);
-                break;
-            }
-        }
+    public Optional<Reminder> getReminder(Integer reminderId){
+        Optional<Reminder> reminder=reminderRepository.findById(reminderId);
         return reminder;
     }
 
     public List<Reminder> getAllRemindersForUser(Integer userId){
-        List<Reminder> reminderList = new ArrayList<>();
-        if(remindersMap.containsKey(userId)){
-            reminderList=remindersMap.get(userId).values().stream().toList();
-        }
+        List<Reminder> reminderList =reminderRepository.findAllByUserId(userId);
         return reminderList;
     }
 
     public void updateReminder(Reminder reminder){
-        createReminder(reminder);
+        reminderRepository.save(reminder);
     }
 
     public void deleteReminder(Integer reminderId){
-        for(HashMap<Integer,Reminder> hm : remindersMap.values()){
-            if(hm.containsKey(reminderId)){
-                hm.remove(reminderId);
-                break;
-            }
-        }
+        reminderRepository.deleteById(reminderId);
+
     }
 
     public void deleteReminders(Integer userId){
-            if(remindersMap.containsKey(userId)){
-                remindersMap.remove(userId);
-            }
+        throw new UnsupportedOperationException("Deleting all reminders for an user is currently not supported");
     }
 }
